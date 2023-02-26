@@ -104,6 +104,7 @@
 // Version 1.0.2
 // This new version in Go calculates a user's age and the number of days until their next birthday,
 // and also reverses the date format from US to UK:
+
 // package main
 
 // import (
@@ -160,6 +161,7 @@
 // We then reverse the birthdate format to US format using the Format function with the "01/02/2006" format, which corresponds to the month/day/year format.
 // The rest of the program is identical to the previous version, calculating the user's age and the number of days until their next birthday,
 // and printing the results to the console with the US-format birthdate.
+
 // package main
 
 // import (
