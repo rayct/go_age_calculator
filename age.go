@@ -49,7 +49,7 @@
 // 	fmt.Printf("There are %d days until your next birthday.\n", daysUntilBirthday)
 // }
 
-// Optimised Version: 1.0
+// Optimised Version: 1.0a
 // This version is slightly more optimized, with the following changes:
 // The daysOfWeek array is removed since we can directly convert the Weekday value to a string using the String() method.
 // The if statement that calculates the age now only checks the YearDay of the current date and the birthdate, rather than both the month and day.
