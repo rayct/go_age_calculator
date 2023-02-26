@@ -1,7 +1,6 @@
-# This program will prompt the user for their date of birth, and then it will calculate current age,
-# the day of the week you were born on, and the number of days until your next birthday.
-# To use the program, simply run it in a Go environment and follow the prompts.
+# This program will prompt the user for their date of birth, and then it will calculate current age, the day of the week you were born on, and the number of days until your next birthday.
 
+## To use the program, simply run it in a Go environment and follow the prompts.
 # Version: 1.0.4 - Refactored and Optimised Code
 ## In this optimized version of the program, we first prompt the user to enter their birthdate in UK format (DD-MM-YYYY) using fmt.Scanln.
 ## This eliminates the need for a separate var statement and reduces the number of lines of code.
