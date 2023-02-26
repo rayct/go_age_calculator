@@ -221,6 +221,59 @@
 // which is more efficient than creating a new time.Time object with the user's birthdate and then incrementing the year using AddDate.
 // Finally, we reverse the birthdate format to US format using the Format method and print the results to the console.
 
+// package main
+
+// import (
+// 	"fmt"
+// 	"time"
+// )
+
+// func main() {
+// 	// Prompt user for their date of birth in UK format
+// 	fmt.Print("Enter your date of birth (DD-MM-YYYY): ")
+// 	var birthdateStr string
+// 	if _, err := fmt.Scanln(&birthdateStr); err != nil {
+// 		fmt.Println("Invalid input")
+// 		return
+// 	}
+
+// 	// Parse birthdate to time.Time object
+// 	birthdate, err := time.Parse("02-01-2006", birthdateStr)
+// 	if err != nil {
+// 		fmt.Println("Invalid date format:", birthdateStr)
+// 		return
+// 	}
+
+// 	// Calculate age and days until next birthday
+// 	now := time.Now()
+// 	nextBirthday := time.Date(now.Year(), birthdate.Month(), birthdate.Day(), 0, 0, 0, 0, time.Local)
+// 	if now.After(nextBirthday) {
+// 		nextBirthday = nextBirthday.AddDate(1, 0, 0)
+// 	}
+// 	age := now.Year() - birthdate.Year()
+// 	if now.Before(nextBirthday) {
+// 		age--
+// 	}
+// 	daysUntilBirthday := int(nextBirthday.Sub(now).Hours() / 24)
+
+// 	// Reverse birthdate format to US format
+// 	usFormatBirthdateStr := birthdate.Format("01/02/2006")
+
+// 	// Print results
+// 	fmt.Printf("You were born on a %s.\n", birthdate.Weekday())
+// 	fmt.Printf("You are currently %d years old.\n", age)
+// 	fmt.Printf("There are %d days until your next birthday.\n", daysUntilBirthday)
+// 	fmt.Printf("Your birthdate in US format is: %s.\n", usFormatBirthdateStr)
+// }
+
+// Version: 1.0.5
+// There are a few small improvements I have made:
+// Instead of calculating the day of the week the user was born on using the Weekday() function,
+// we can use the Format() function with the "Monday", "Tuesday", etc. format to directly get the day of the week string.
+// We can simplify the calculation of the user's age by using the Sub() function of the time.Time object to calculate the difference between the user's birthdate and today's date,
+// and then dividing the result by 365.25 to get the age in years.
+// This is more accurate than our previous method of simply subtracting the birth year from the current year.
+
 package main
 
 import (
@@ -230,37 +283,38 @@ import (
 
 func main() {
 	// Prompt user for their date of birth in UK format
-	fmt.Print("Enter your date of birth (DD-MM-YYYY): ")
 	var birthdateStr string
-	if _, err := fmt.Scanln(&birthdateStr); err != nil {
-		fmt.Println("Invalid input")
-		return
-	}
+	fmt.Print("Enter your date of birth (DD-MM-YYYY): ")
+	fmt.Scanln(&birthdateStr)
 
-	// Parse birthdate to time.Time object
+	// Convert birthdate to time.Time object
 	birthdate, err := time.Parse("02-01-2006", birthdateStr)
 	if err != nil {
 		fmt.Println("Invalid date format:", birthdateStr)
 		return
 	}
 
-	// Calculate age and days until next birthday
-	now := time.Now()
-	nextBirthday := time.Date(now.Year(), birthdate.Month(), birthdate.Day(), 0, 0, 0, 0, time.Local)
-	if now.After(nextBirthday) {
-		nextBirthday = nextBirthday.AddDate(1, 0, 0)
-	}
-	age := now.Year() - birthdate.Year()
-	if now.Before(nextBirthday) {
-		age--
-	}
-	daysUntilBirthday := int(nextBirthday.Sub(now).Hours() / 24)
-
 	// Reverse birthdate format to US format
 	usFormatBirthdateStr := birthdate.Format("01/02/2006")
 
+	// Get today's date
+	today := time.Now().Local()
+
+	// Calculate age in years
+	age := int(today.Sub(birthdate).Hours() / 24 / 365.25)
+
+	// Calculate day of the week the user was born on
+	dayOfWeek := birthdate.Format("Monday")
+
+	// Calculate number of days until next birthday
+	nextBirthday := time.Date(today.Year(), birthdate.Month(), birthdate.Day(), 0, 0, 0, 0, today.Location())
+	if today.After(nextBirthday) {
+		nextBirthday = nextBirthday.AddDate(1, 0, 0)
+	}
+	daysUntilBirthday := int(nextBirthday.Sub(today).Hours() / 24)
+
 	// Print results
-	fmt.Printf("You were born on a %s.\n", birthdate.Weekday())
+	fmt.Printf("You were born on a %s.\n", dayOfWeek)
 	fmt.Printf("You are currently %d years old.\n", age)
 	fmt.Printf("There are %d days until your next birthday.\n", daysUntilBirthday)
 	fmt.Printf("Your birthdate in US format is: %s.\n", usFormatBirthdateStr)
