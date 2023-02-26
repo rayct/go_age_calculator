@@ -50,6 +50,12 @@
 // }
 
 // Optimised Version: 1.0
+// This version is slightly more optimized, with the following changes:
+// The daysOfWeek array is removed since we can directly convert the Weekday value to a string using the String() method.
+// The if statement that calculates the age now only checks the YearDay of the current date and the birthdate, rather than both the month and day.
+// The int() cast is added when calculating daysUntilBirthday, since we don't need the float value returned by Sub().Hours() / 24.
+// Overall, these changes make the code a bit more concise and eliminate unnecessary computations.
+
 // package main
 
 // import (
@@ -94,13 +100,6 @@
 // 	fmt.Printf("You are currently %d years old.\n", age)
 // 	fmt.Printf("There are %d days until your next birthday.\n", daysUntilBirthday)
 // }
-
-// This version is slightly more optimized, with the following changes:
-
-// The daysOfWeek array is removed since we can directly convert the Weekday value to a string using the String() method.
-// The if statement that calculates the age now only checks the YearDay of the current date and the birthdate, rather than both the month and day.
-// The int() cast is added when calculating daysUntilBirthday, since we don't need the float value returned by Sub().Hours() / 24.
-// Overall, these changes make the code a bit more concise and eliminate unnecessary computations.
 
 // Version 1.0.2
 // This new version in Go calculates a user's age and the number of days until their next birthday,
