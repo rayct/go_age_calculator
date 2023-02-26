@@ -1,4 +1,4 @@
-// Version 1.0
+// Version: 1.0
 // This Go program prompts the user to enter their date of birth in the format of DD-MM-YYYY.
 // The program will then calculate your current age in years, the day of the week you were born on,
 // and the number of days until your next birthday.
@@ -49,7 +49,7 @@
 // 	fmt.Printf("There are %d days until your next birthday.\n", daysUntilBirthday)
 // }
 
-// Optimised Version 1.0.1
+// Optimised Version: 1.0
 // package main
 
 // import (
@@ -155,7 +155,7 @@
 // 	fmt.Printf("Your birthdate in reversed format is: %s.\n", reversedBirthdateStr)
 // }
 
-// Version 1.0.3
+// Version: 1.0.3
 // In this improved version of the program, we first prompt the user to enter their birthdate in UK format (DD-MM-YYYY).
 // We then parse this string using the "02-01-2006" format, which corresponds to the day-month-year format.
 // We then reverse the birthdate format to US format using the Format function with the "01/02/2006" format, which corresponds to the month/day/year format.
